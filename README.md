@@ -1,23 +1,23 @@
-# 🖥️ Operating Systems (OS) Labs
+# 🖥️ Operating Systems Labs
 
-This repository contains lab exercises for the **Operating Systems (OS)** course.
+This repository contains lab exercises for the **Operating Systems** course.
 
 ## 📌 Lab Contents
 
-- **Lab 1:** Process Management & Scheduling  
-- **Lab 2:** Inter-Process Communication (IPC)  
-- **Lab 3:** Memory Management & Virtual Memory  
-- **Lab 4:** File Systems & Disk Management  
+- **Lab 1:** Introduction to Linux Programming  
+- **Lab 2:** Process 
+- **Lab 3:** Synchronization  
+- **Lab 4:** CPU Scheduling 
 
 ## 🛠 Tools & Technologies
 
-- **Programming Language:** C / C++ / Python  
-- **Operating Systems:** Linux / Windows  
+- **Programming Language:** C 
+- **Operating Systems:** Linux 
 - **Utilities:** Bash, GCC, GDB, Makefile  
 
 ## 🚀 How to Use
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/username/OS-Labs.git
-   cd OS-Labs
+   git clone https://github.com/leduccuonghcmut/OS-LAB241.git
+   cd OS-LAB241
