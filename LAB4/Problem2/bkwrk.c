@@ -6,17 +6,17 @@
 #include <linux/sched.h>
 #include <sys/syscall.h>
 
-//#define DEBUG
+
 #define INFO
 #define WORK_THREAD
 
-static unsigned int next_worker = 0; // Keeps track of the next worker in FIFO order
+static unsigned int next_worker = 0;
 
 void *bkwrk_worker(void *arg) {
     sigset_t set;
     int sig;
     int s;
-    int i = *((int *)arg); // Default arg is integer of workid
+    int i = *((int *)arg);
     struct bkworker_t *wrk = &worker[i];
 
     /* Taking the mask for waking up */
@@ -75,7 +75,7 @@ int bkwrk_create_worker() {
     unsigned int i;
 
     for (i = 0; i < MAX_WORKER; i++) {
-        // Dùng fork() thay vì clone()
+
         pid_t pid = fork();
         if (pid == 0) {
             /* Child process - worker */
@@ -86,8 +86,8 @@ int bkwrk_create_worker() {
             sigprocmask(SIG_BLOCK, &set, NULL);
 
             int wrkid = i;
-            bkwrk_worker(&wrkid); // Bắt đầu vòng lặp worker trong process con
-            exit(0); // Worker kết thúc khi vòng lặp xong
+            bkwrk_worker(&wrkid);
+            exit(0);
         } else if (pid > 0) {
             /* Parent process */
             wrkid_tid[i] = pid;

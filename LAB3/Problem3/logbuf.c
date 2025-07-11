@@ -25,13 +25,12 @@ void *wrlog(void *data)
    int id = *(int*) data;
 
    usleep(20);
-   sem_wait(&sem_2); // check if buffer's slot is available
+   sem_wait(&sem_2); 
    sprintf(str, "%d", id);
-   sem_wait(&sem_1); // lock sem_1
+   sem_wait(&sem_1); 
    strcpy(logbuf[count], str);
-   count = (count >= MAX_BUFFER_SLOT)? count :(count + 1); /* Only increase count to size MAX_BUFFER_SLOT*/
-   sem_post(&sem_1); // unlock sem_1
-   //printf("wrlog(): %d \n", id);
+   count = (count >= MAX_BUFFER_SLOT)? count :(count + 1); 
+   sem_post(&sem_1); 
 
    return 0;
 }
@@ -41,7 +40,6 @@ void flushlog()
    int i;
    char nullval[MAX_LOG_LENGTH];
 
-   //printf("flushlog()\n");
    sprintf(nullval, "%d", -1);
    for (i = 0; i < count; i++)
    {
@@ -51,13 +49,13 @@ void flushlog()
 
    fflush(stdout);
 
-   // reset buffer
-   sem_wait(&sem_1); // lock sem_1 
+
+   sem_wait(&sem_1);
    count = 0;
-   sem_post(&sem_1); // unlock sem_1
+   sem_post(&sem_1);
    int value;
    
-   // reset sem_2
+
    sem_getvalue(&sem_2, &value); 
    for(int i=1;i<=6-value;i++) sem_post(&sem_2);
    
